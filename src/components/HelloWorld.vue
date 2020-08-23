@@ -2,11 +2,11 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
-    <message-list :items="messages" @delete="deleteMessage"></message-list>
+<!--    <message-list :items="messages" @delete="deleteMessage"></message-list>-->
+    <li v-for="(message, idx) in messages" v-bind:key="idx">{{ message.text }} - {{ message.createdAt }}
+      <button @click="deleteMessage(message)">delete</button>
+    </li>
     <ul>
-      <li v-for="message in messages" v-bind:key="message">{{ message.text }} - {{ message.createdAt }}
-        <button @click="deleteMessage(message)">delete</button>
-      </li>
       <form v-on:submit.prevent="addMessage">
         <textarea v-model="newMessage" placeholder="Leave a message"></textarea>
         <div>
